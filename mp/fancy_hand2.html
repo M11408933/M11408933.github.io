@@ -293,11 +293,16 @@
     }
 
     function drawFingertips(hand, gx, gy) {
-      [4, 8, 12, 16, 20].forEach(idx => {
+      const ptColors = [color(255, 80, 80), color(80, 255, 80), color(80, 150, 255), color(255, 255, 80), color(255, 80, 255)];
+      [4, 8, 12, 16, 20].forEach((idx, i) => {
         let k = hand.keypoints[idx];
         let x = map(k.x, 0, 640, 0, width) + gx, y = map(k.y, 0, 480, 0, height) + gy;
-        noFill(); stroke(255, 180); circle(x, y, 12);
-        fill(255, 150); textSize(9); text(`ID:${idx}`, x + 15, y - 10);
+        fill(ptColors[i]);
+        stroke(255);
+        strokeWeight(2);
+        circle(x, y, 26);
+        noStroke();
+        fill(255, 200); textSize(12); text(`ID:${idx}`, x + 20, y - 15);
       });
     }
 
